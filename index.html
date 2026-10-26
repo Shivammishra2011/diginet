@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foundation Coaching | Class 1-12 | Online & Offline</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #fefefe;
+      color: #1e1e2f;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary: #1e3c72;
+      --primary-light: #2a5298;
+      --accent: #ff7e5f;
+      --accent-soft: #feb47b;
+      --gray-bg: #f8f9fc;
+      --card-white: #ffffff;
+      --text-dark: #1e1e2f;
+      --text-soft: #4a4e69;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.08);
+      --radius: 24px;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 32px; border-radius: 60px; font-weight: 600;
+      text-decoration: none; transition: all 0.2s ease; cursor: pointer;
+      border: none; font-size: 1rem; letter-spacing: 0.3px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 12px 20px rgba(30, 60, 114, 0.25); }
+    .btn-accent { background: var(--accent); color: white; }
+    .btn-accent:hover { background: #f06b4a; transform: translateY(-2px); box-shadow: 0 12px 20px rgba(255, 126, 95, 0.3); }
+    .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); box-shadow: none; }
+    .btn-outline:hover { background: var(--primary); color: white; transform: translateY(-2px); }
+    .btn-large { padding: 16px 42px; font-size: 1.1rem; }
+
+    /* Navbar */
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; flex-wrap: wrap; gap: 16px; }
+    .logo { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .logo i { color: var(--accent); font-size: 2rem; }
+    .nav-links { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; color: var(--text-soft); font-weight: 500; transition: color 0.2s; font-size: 0.97rem; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Hero */
+    .hero { padding: 50px 0 30px; text-align: center; }
+    .hero h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.2; color: var(--primary); margin-bottom: 16px; letter-spacing: -1px; }
+    .hero .highlight { background: linear-gradient(135deg, var(--accent) 0%, #feb47b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1.25rem; color: var(--text-soft); max-width: 720px; margin: 0 auto 24px; }
+    .hero-cta-group { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 30px; }
+
+    .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px; padding: 30px 0; border-top: 1px solid #eef0f6; border-bottom: 1px solid #eef0f6; }
+    .hero-stat { text-align: center; }
+    .hero-stat .num { font-size: 2.4rem; font-weight: 800; color: var(--primary); line-height: 1; }
+    .hero-stat .label { font-size: 0.95rem; color: var(--text-soft); margin-top: 6px; font-weight: 500; }
+
+    /* Section helpers */
+    .section-title { font-size: 2.4rem; font-weight: 700; color: var(--primary); text-align: center; margin-bottom: 12px; letter-spacing: -0.5px; }
+    .section-subtitle { text-align: center; color: var(--text-soft); font-size: 1.15rem; margin-bottom: 48px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    section.block { padding: 40px 0; }
+
+    /* Teachers */
+    .teachers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 20px; margin-bottom: 40px; }
+    .teacher-card { background: var(--card-white); border-radius: var(--radius); padding: 32px 28px; box-shadow: var(--shadow-sm); transition: transform 0.25s, box-shadow 0.3s; border: 1px solid rgba(0, 0, 0, 0.02); display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .teacher-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
+    .teacher-avatar { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(145deg, #e6e9f0, #ffffff); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border: 4px solid white; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); }
+    .teacher-avatar i { font-size: 5.5rem; color: var(--primary); opacity: 0.8; }
+    .teacher-card:nth-child(2) .teacher-avatar i { color: #b83b5e; }
+    .teacher-name { font-size: 1.8rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .teacher-subject { font-size: 1rem; font-weight: 600; color: var(--accent); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 12px; }
+    .teacher-bio { color: var(--text-soft); margin-bottom: 20px; font-size: 1rem; max-width: 300px; }
+    .teacher-badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
+    .badge { background: var(--gray-bg); padding: 6px 16px; border-radius: 40px; font-size: 0.85rem; font-weight: 500; color: var(--primary); }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; margin-top: 20px; }
+    .about-text h3 { font-size: 1.6rem; color: var(--primary); margin-bottom: 16px; }
+    .about-text p { color: var(--text-soft); margin-bottom: 16px; font-size: 1.05rem; }
+    .about-features { list-style: none; margin-top: 20px; }
+    .about-features li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; color: var(--text-soft); }
+    .about-features i { color: var(--accent); margin-top: 5px; font-size: 1.1rem; }
+    .about-visual { background: linear-gradient(135deg, var(--primary) 0%, #2a5298 100%); border-radius: 40px; padding: 44px 36px; color: white; box-shadow: var(--shadow-md); }
+    .about-visual h4 { font-size: 1.4rem; margin-bottom: 22px; }
+    .about-visual .mini-item { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .about-visual .mini-item .icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .about-visual .mini-item strong { display: block; font-size: 1rem; }
+    .about-visual .mini-item span { font-size: 0.88rem; opacity: 0.85; }
+
+    /* Why choose us */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+    .feature-card { background: var(--card-white); border-radius: 24px; padding: 32px 26px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.02); transition: transform 0.2s, box-shadow 0.2s; }
+    .feature-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .feature-icon { width: 60px; height: 60px; border-radius: 18px; background: linear-gradient(135deg, var(--accent-soft), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 1.7rem; color: white; margin-bottom: 20px; }
+    .feature-card h4 { font-size: 1.2rem; color: var(--primary); margin-bottom: 10px; }
+    .feature-card p { color: var(--text-soft); font-size: 0.97rem; }
+
+    /* Programs / Subjects */
+    .programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 26px; }
+    .program-card { background: var(--card-white); border-radius: 24px; padding: 30px 26px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--accent); transition: transform 0.2s; }
+    .program-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .program-card .p-tag { display: inline-block; background: var(--gray-bg); color: var(--primary); font-size: 0.78rem; font-weight: 700; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
+    .program-card h4 { font-size: 1.25rem; color: var(--primary); margin-bottom: 10px; }
+    .program-card p { color: var(--text-soft); font-size: 0.95rem; margin-bottom: 16px; }
+    .program-card .p-meta { font-size: 0.88rem; color: var(--accent); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+
+    /* Reviews */
+    .reviews-summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px; background: var(--gray-bg); border-radius: 30px; padding: 28px 40px; margin-bottom: 44px; }
+    .rating-big { font-size: 3.5rem; font-weight: 800; color: var(--primary); line-height: 1; }
+    .rating-stars { color: #ffb400; font-size: 1.3rem; letter-spacing: 2px; }
+    .rating-meta { color: var(--text-soft); font-size: 0.95rem; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 26px; }
+    .review-card { background: var(--card-white); border-radius: 24px; padding: 30px 28px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.02); position: relative; }
+    .review-card .quote-icon { position: absolute; top: 20px; right: 24px; font-size: 1.8rem; color: #f0f2f8; }
+    .review-stars { color: #ffb400; font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .review-text { color: var(--text-soft); font-size: 0.98rem; margin-bottom: 22px; font-style: italic; }
+    .review-author { display: flex; align-items: center; gap: 14px; }
+    .review-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+    .review-author strong { display: block; color: var(--primary); font-size: 1rem; }
+    .review-author span { font-size: 0.85rem; color: var(--text-soft); }
+
+    /* CTA banner */
+    .cta-banner { background: linear-gradient(135deg, var(--primary) 0%, #11294b 100%); border-radius: 40px; padding: 52px 32px; text-align: center; margin: 60px 0 40px; color: white; box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2); }
+    .cta-banner h2 { font-size: 2.4rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .cta-banner p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .cta-banner .btn-accent { background: var(--accent); color: white; box-shadow: 0 8px 20px rgba(255, 126, 95, 0.4); }
+    .cta-banner .btn-accent:hover { background: #f06b4a; }
+
+    /* Admission form */
+    .admission-section { padding: 50px 0; }
+    .admission-card { background: var(--card-white); border-radius: 40px; padding: 48px 40px; box-shadow: var(--shadow-md); border: 1px solid rgba(0, 0, 0, 0.02); max-width: 820px; margin: 0 auto; }
+    .admission-card h2 { font-size: 2.2rem; font-weight: 700; color: var(--primary); text-align: center; margin-bottom: 8px; letter-spacing: -0.5px; }
+    .admission-card .subhead { text-align: center; color: var(--text-soft); margin-bottom: 36px; font-size: 1.05rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-weight: 600; color: var(--primary); font-size: 0.95rem; letter-spacing: 0.2px; }
+    .form-group label .required { color: var(--accent); margin-left: 2px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 18px; border: 1.5px solid #e4e7ee; border-radius: 16px; font-size: 1rem; font-family: inherit; color: var(--text-dark); background: #fcfcfe; transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 126, 95, 0.12); background: white; }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .radio-group { display: flex; gap: 24px; flex-wrap: wrap; padding-top: 6px; }
+    .radio-group label { display: flex; align-items: center; gap: 8px; font-weight: 500; color: var(--text-soft); cursor: pointer; }
+    .radio-group input[type="radio"] { width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; }
+    .form-submit { margin-top: 32px; text-align: center; }
+    .form-submit .btn { width: 100%; max-width: 420px; padding: 18px 32px; font-size: 1.15rem; }
+    .form-note { margin-top: 16px; text-align: center; font-size: 0.88rem; color: var(--text-soft); }
+    .form-note i { color: #25D366; font-size: 1rem; margin-right: 4px; }
+
+    /* FAQ */
+    .faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+    .faq-item { background: var(--card-white); border-radius: 20px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.02); overflow: hidden; }
+    .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 22px 26px; cursor: pointer; font-weight: 600; color: var(--primary); font-size: 1.02rem; gap: 16px; transition: background 0.2s; }
+    .faq-question:hover { background: #fbfcff; }
+    .faq-question i { transition: transform 0.25s; color: var(--accent); flex-shrink: 0; }
+    .faq-item.open .faq-question i { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 26px; color: var(--text-soft); font-size: 0.97rem; }
+    .faq-item.open .faq-answer { max-height: 300px; padding: 0 26px 22px; }
+
+    /* Action strip */
+    .action-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; background: var(--gray-bg); padding: 28px 40px; border-radius: 80px; margin: 50px 0; box-shadow: var(--shadow-sm); }
+    .action-strip p { font-size: 1.25rem; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 12px; }
+    .action-strip p i { color: var(--accent); font-size: 1.8rem; }
+    .action-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* Footer */
+    footer { background: #0f1a2b; color: #b0b8c5; padding: 48px 0 24px; border-radius: 40px 40px 0 0; margin-top: 60px; }
+    .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; margin-bottom: 40px; }
+    .footer-brand h3 { color: white; font-size: 1.8rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .footer-brand h3 i { color: var(--accent); }
+    .footer-brand p { max-width: 280px; line-height: 1.6; }
+    .footer-links h4, .footer-contact h4 { color: white; margin-bottom: 20px; font-size: 1.2rem; letter-spacing: 0.5px; }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { color: #b0b8c5; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-contact p { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .footer-contact i { color: var(--accent); width: 20px; }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 24px; text-align: center; font-size: 0.9rem; }
+
+    /* Floating WhatsApp */
+    .float-contact { position: fixed; bottom: 28px; right: 28px; background: #25D366; color: white; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); transition: all 0.2s; z-index: 999; text-decoration: none; }
+    .float-contact:hover { background: #1eb958; transform: scale(1.08); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero h1 { font-size: 2.6rem; }
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.4rem; }
+      .navbar { flex-direction: column; align-items: center; }
+      .nav-links { gap: 16px; flex-wrap: wrap; justify-content: center; }
+      .action-strip { flex-direction: column; text-align: center; gap: 20px; border-radius: 40px; padding: 28px 20px; }
+      .action-buttons { justify-content: center; }
+      .btn-large { padding: 14px 28px; }
+      .cta-banner h2 { font-size: 1.9rem; }
+      .float-contact { width: 56px; height: 56px; font-size: 1.7rem; bottom: 20px; right: 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .admission-card { padding: 32px 22px; }
+      .admission-card h2 { font-size: 1.8rem; }
+      .hero-stats { gap: 24px; }
+      .hero-stat .num { font-size: 1.9rem; }
+      .reviews-summary { flex-direction: column; text-align: center; gap: 12px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-cta-group .btn { width: 100%; justify-content: center; }
+      .action-buttons .btn { width: 100%; }
+      .teacher-avatar { width: 120px; height: 120px; }
+      .teacher-avatar i { font-size: 4.5rem; }
+      .section-title { font-size: 1.9rem; }
+    }
+
+    .teacher-card, .btn, .feature-card, .program-card, .review-card { transition: all 0.2s ease; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Foundation<span style="color: var(--accent);">Pro</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#teachers">Teachers</a>
+        <a href="#programs">Programs</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#admission">Admission</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#admission" class="btn btn-accent"><i class="fas fa-user-plus"></i> Admission</a>
+        <a href="https://wa.me/919876543210" target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Build a strong <span class="highlight">foundation</span> for Class 1–12</h1>
+      <p>Expert coaching by two passionate teachers – online & offline. Personalized attention, proven results, and a caring environment where every student thrives.</p>
+      <div class="hero-cta-group">
+        <a href="#admission" class="btn btn-accent btn-large"><i class="fas fa-user-plus"></i> Apply for Admission</a>
+        <a href="#contact" class="btn btn-primary btn-large"><i class="fas fa-phone-alt"></i> Call Now</a>
+        <a href="https://wa.me/919876543210" target="_blank" class="btn btn-outline btn-large"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">12+</div>
+          <div class="label">Years of Experience</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">2,500+</div>
+          <div class="label">Students Taught</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">98%</div>
+          <div class="label">Parent Satisfaction</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">1–12</div>
+          <div class="label">Classes Covered</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section id="about" class="block">
+    <div class="container">
+      <h2 class="section-title">About FoundationPro</h2>
+      <p class="section-subtitle">A small, focused coaching center built on one simple belief — every child can excel with the right guidance and genuine care.</p>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>Learning that feels personal, not mechanical</h3>
+          <p>FoundationPro was started in 2012 with a simple idea: instead of large, crowded classrooms where students get lost, we would keep our batches small and our teaching deeply personal. Today, we continue that promise with just two dedicated teachers who know every student by name.</p>
+          <p>We teach students from <strong>Class 1 to Class 12</strong>, with a special emphasis on <strong>foundation building</strong> in the early years. Whether your child needs extra support, wants to stay ahead, or is preparing for competitive exams, we design the learning around them — not the other way around.</p>
+          <p>Our <strong>online and offline</strong> modes mean families can choose what fits their routine best. And because we believe in transparency, we offer a <strong>free demo class</strong> before any commitment.</p>
+          <ul class="about-features">
+            <li><i class="fas fa-check-circle"></i> <span><strong>Small batches</strong> — maximum 8 students per batch for real attention.</span></li>
+            <li><i class="fas fa-check-circle"></i> <span><strong>Personal mentoring</strong> — direct access to both teachers, not just a helpdesk.</span></li>
+            <li><i class="fas fa-check-circle"></i> <span><strong>Regular parent updates</strong> — because progress is a team effort.</span></li>
+            <li><i class="fas fa-check-circle"></i> <span><strong>No hidden fees</strong> — clear, honest pricing with flexible plans.</span></li>
+          </ul>
+        </div>
+
+        <div class="about-visual">
+          <h4><i class="fas fa-star" style="color: #ffb400;"></i> What makes us different</h4>
+          <div class="mini-item">
+            <div class="icon"><i class="fas fa-users"></i></div>
+            <div>
+              <strong>Small batch sizes</strong>
+              <span>Max 8 students per session</span>
+            </div>
+          </div>
+          <div class="mini-item">
+            <div class="icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <strong>Flexible timings</strong>
+              <span>Morning, afternoon & evening slots</span>
+            </div>
+          </div>
+          <div class="mini-item">
+            <div class="icon"><i class="fas fa-laptop-house"></i></div>
+            <div>
+              <strong>Online + Offline</strong>
+              <span>Learn from home or at our center</span>
+            </div>
+          </div>
+          <div class="mini-item">
+            <div class="icon"><i class="fas fa-chart-line"></i></div>
+            <div>
+              <strong>Progress tracking</strong>
+              <span>Monthly tests & report cards</span>
+            </div>
+          </div>
+          <div class="mini-item">
+            <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+            <div>
+              <strong>Genuine care</strong>
+              <span>We treat every student like family</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teachers -->
+  <section id="teachers" class="block">
+    <div class="container">
+      <h2 class="section-title">Meet Your Mentors</h2>
+      <p class="section-subtitle">Two dedicated educators, one goal — your child's success.</p>
+      <div class="teachers-grid">
+        <div class="teacher-card">
+          <div class="teacher-avatar"><i class="fas fa-user-tie"></i></div>
+          <h3 class="teacher-name">Rajesh Verma</h3>
+          <div class="teacher-subject">Mathematics & Science</div>
+          <p class="teacher-bio">M.Sc (Physics), B.Ed with 14 years of teaching experience. Known for making complex concepts feel simple — from algebra to physics — for classes 6 to 12. Also guides students for Olympiads and NTSE foundation.</p>
+          <div class="teacher-badges">
+            <span class="badge">Class 6–12</span>
+            <span class="badge">Maths & Science</span>
+            <span class="badge">CBSE / ICSE</span>
+            <span class="badge">Olympiad</span>
+          </div>
+          <a href="#admission" class="btn btn-primary" style="width:100%;"><i class="fas fa-user-plus"></i> Join Rajesh's Batch</a>
+        </div>
+        <div class="teacher-card">
+          <div class="teacher-avatar"><i class="fas fa-user-graduate"></i></div>
+          <h3 class="teacher-name">Priya Sharma</h3>
+          <div class="teacher-subject">English & Social Studies</div>
+          <p class="teacher-bio">M.A (English), B.Ed with 10 years of experience. Specializes in building strong reading, writing, and communication skills for classes 1 to 10. Passionate about making history and civics come alive for young learners.</p>
+          <div class="teacher-badges">
+            <span class="badge">Class 1–10</span>
+            <span class="badge">English & SST</span>
+            <span class="badge">Foundation</span>
+            <span class="badge">Public Speaking</span>
+          </div>
+          <a href="#admission" class="btn btn-accent" style="width:100%;"><i class="fas fa-user-plus"></i> Join Priya's Batch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="block" style="background: var(--gray-bg); border-radius: 60px 60px 0 0;">
+    <div class="container" style="padding-top: 30px; padding-bottom: 40px;">
+      <h2 class="section-title">Why Parents Trust Us</h2>
+      <p class="section-subtitle">We're not a big chain — and that's exactly why your child gets the attention they deserve.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+          <h4>Personalized Attention</h4>
+          <p>With only 8 students per batch, every child gets individual time, feedback, and doubt-solving. No one gets left behind.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <h4>Experienced Teachers</h4>
+          <p>Both teachers have 10+ years of classroom experience and are directly involved in every student's progress.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-laptop"></i></div>
+          <h4>Online & Offline Flexibility</h4>
+          <p>Join from home or attend at our center. Same teachers, same quality — whichever mode suits your family.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+          <h4>Regular Tests & Reports</h4>
+          <p>Weekly practice sheets and monthly assessments, with clear progress reports shared with parents.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-rupee-sign"></i></div>
+          <h4>Affordable & Transparent</h4>
+          <p>Honest, fixed pricing with no hidden charges. Sibling discounts and flexible monthly plans available.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-smile"></i></div>
+          <h4>Free Demo Class</h4>
+          <p>Try before you commit. Book a free demo class to experience our teaching style with zero pressure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section id="programs" class="block">
+    <div class="container">
+      <h2 class="section-title">Programs & Subjects</h2>
+      <p class="section-subtitle">Structured coaching for every stage — from early foundation to board exam preparation.</p>
+      <div class="programs-grid">
+        <div class="program-card">
+          <span class="p-tag">Class 1–5</span>
+          <h4>Primary Foundation</h4>
+          <p>Building strong basics in Maths, English, EVS, and reasoning through activity-based learning, storytelling, and regular practice.</p>
+          <div class="p-meta"><i class="fas fa-clock"></i> 3 days/week · 1 hr sessions</div>
+        </div>
+        <div class="program-card">
+          <span class="p-tag">Class 6–8</span>
+          <h4>Middle School Foundation</h4>
+          <p>Concept-focused coaching in Maths, Science, English, and Social Studies. Foundation for Olympiads and future board exams.</p>
+          <div class="p-meta"><i class="fas fa-clock"></i> 4 days/week · 1.5 hr sessions</div>
+        </div>
+        <div class="program-card">
+          <span class="p-tag">Class 9–10</span>
+          <h4>Board Exam Preparation</h4>
+          <p>Complete CBSE/ICSE syllabus coverage with chapter tests, sample papers, revision sessions, and doubt-clearing classes.</p>
+          <div class="p-meta"><i class="fas fa-clock"></i> 5 days/week · 2 hr sessions</div>
+        </div>
+        <div class="program-card">
+          <span class="p-tag">Class 11–12</span>
+          <h4>Senior Secondary</h4>
+          <p>Focused coaching for Maths, Physics, Chemistry, and English. Ideal for students targeting boards and competitive exams.</p>
+          <div class="p-meta"><i class="fas fa-clock"></i> 5 days/week · 2 hr sessions</div>
+        </div>
+        <div class="program-card">
+          <span class="p-tag">Special</span>
+          <h4>Olympiad & NTSE Foundation</h4>
+          <p>Extra enrichment classes for students aiming at Olympiads, NTSE, and other competitive foundation exams.</p>
+          <div class="p-meta"><i class="fas fa-clock"></i> Weekend batches available</div>
+        </div>
+        <div class="program-card">
+          <span class="p-tag">All Classes</span>
+          <h4>Doubt Clearing & Crash Courses</h4>
+          <p>Short-term crash courses before exams and dedicated doubt-clearing sessions for students who need that extra push.</p>
+          <div class="p-meta"><i class="fas fa-clock"></i> Flexible scheduling</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="block" style="background: var(--gray-bg);">
+    <div class="container" style="padding-top: 20px; padding-bottom: 20px;">
+      <h2 class="section-title">What Parents Say</h2>
+      <p class="section-subtitle">Real feedback from families who have trusted us with their children's learning.</p>
+
+      <div class="reviews-summary">
+        <div style="text-align:center;">
+          <div class="rating-big">4.9</div>
+          <div class="rating-stars">★★★★★</div>
+          <div class="rating-meta">Based on 120+ parent reviews</div>
+        </div>
+        <div style="text-align:center; max-width: 420px;">
+          <p style="color: var(--text-soft); font-size: 1.02rem;">"The best decision we made for our daughter's studies. The teachers genuinely care, and the small batch size means she never hesitates to ask questions."</p>
+          <p style="font-weight: 600; color: var(--primary); margin-top: 10px;">— Anjali Mehta, Parent of Class 8 student</p>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"My son used to struggle with Maths. Within three months at FoundationPro, his confidence has completely changed. Rajesh sir explains things so patiently — it's a relief as a parent."</p>
+          <div class="review-author">
+            <div class="review-avatar">SM</div>
+            <div>
+              <strong>Sunita Malhotra</strong>
+              <span>Parent · Class 7</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"We joined the online batch because of our shifting schedule, and honestly, the experience has been just as good as offline. Priya ma'am is wonderful with kids and keeps them engaged."</p>
+          <div class="review-author">
+            <div class="review-avatar">AK</div>
+            <div>
+              <strong>Amit Khanna</strong>
+              <span>Parent · Class 5</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Both my children study here — one in Class 3 and one in Class 10. The teachers know each child's strengths personally. The monthly reports are detailed and honest. Highly recommended."</p>
+          <div class="review-author">
+            <div class="review-avatar">RS</div>
+            <div>
+              <strong>Rekha Singh</strong>
+              <span>Parent · Class 3 & 10</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I was worried about board exam preparation for my daughter. The crash course before her Class 10 boards was excellent — targeted, calm, and practical. She scored 92%!"</p>
+          <div class="review-author">
+            <div class="review-avatar">VP</div>
+            <div>
+              <strong>Vikram Patel</strong>
+              <span>Parent · Class 10</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"What I love most is the transparency. No false promises, no pressure to join more batches. Just honest teaching and regular updates. My daughter actually looks forward to her classes."</p>
+          <div class="review-author">
+            <div class="review-avatar">NG</div>
+            <div>
+              <strong>Neha Gupta</strong>
+              <span>Parent · Class 6</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="review-stars">★★★★☆</div>
+          <p class="review-text">"Great teachers and a friendly environment. The only small thing is that weekend slots fill up fast, so book early. But the teaching quality more than makes up for it."</p>
+          <div class="review-author">
+            <div class="review-avatar">MJ</div>
+            <div>
+              <strong>Manish Joshi</strong>
+              <span>Parent · Class 9</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admission Form -->
+  <section id="admission" class="container admission-section">
+    <div class="admission-card">
+      <h2><i class="fas fa-user-plus" style="color: var(--accent); margin-right: 10px;"></i> Admission Enquiry Form</h2>
+      <p class="subhead">Fill in your details and send it directly to our WhatsApp — we'll respond within a few hours.</p>
+
+      <form id="admissionForm" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="studentName">Student's Full Name <span class="required">*</span></label>
+            <input type="text" id="studentName" name="studentName" placeholder="e.g. Aarav Sharma" required>
+          </div>
+          <div class="form-group">
+            <label for="parentName">Parent's / Guardian's Name <span class="required">*</span></label>
+            <input type="text" id="parentName" name="parentName" placeholder="e.g. Rakesh Sharma" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address (optional)</label>
+            <input type="email" id="email" name="email" placeholder="e.g. parent@email.com">
+          </div>
+          <div class="form-group">
+            <label for="classSelect">Class / Grade <span class="required">*</span></label>
+            <select id="classSelect" name="classSelect" required>
+              <option value="" disabled selected>Select class</option>
+              <option value="Class 1">Class 1</option>
+              <option value="Class 2">Class 2</option>
+              <option value="Class 3">Class 3</option>
+              <option value="Class 4">Class 4</option>
+              <option value="Class 5">Class 5</option>
+              <option value="Class 6">Class 6</option>
+              <option value="Class 7">Class 7</option>
+              <option value="Class 8">Class 8</option>
+              <option value="Class 9">Class 9</option>
+              <option value="Class 10">Class 10</option>
+              <option value="Class 11">Class 11</option>
+              <option value="Class 12">Class 12</option>
+              <option value="Foundation (Class 1-5)">Foundation (Class 1-5)</option>
+              <option value="Foundation (Class 6-8)">Foundation (Class 6-8)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject of Interest</label>
+            <select id="subject" name="subject">
+              <option value="Mathematics">Mathematics</option>
+              <option value="Science">Science</option>
+              <option value="English">English</option>
+              <option value="Social Studies">Social Studies</option>
+              <option value="All Subjects">All Subjects</option>
+              <option value="Foundation (All)">Foundation (All)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Mode of Coaching <span class="required">*</span></label>
+            <div class="radio-group">
+              <label><input type="radio" name="mode" value="Online" checked> Online</label>
+              <label><input type="radio" name="mode" value="Offline"> Offline</label>
+              <label><input type="radio" name="mode" value="Both"> Both</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="timing">Preferred Batch Timing</label>
+            <select id="timing" name="timing">
+              <option value="Morning (7–10 AM)">Morning (7–10 AM)</option>
+              <option value="Afternoon (12–4 PM)">Afternoon (12–4 PM)</option>
+              <option value="Evening (4–8 PM)">Evening (4–8 PM)</option>
+              <option value="Flexible">Flexible</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="message">Any Specific Requirement / Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your child's learning needs, preferred teacher, or any questions..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn btn-accent btn-large">
+            <i class="fab fa-whatsapp"></i> Send Admission Enquiry via WhatsApp
+          </button>
+          <p class="form-note">
+            <i class="fab fa-whatsapp"></i> Clicking the button will open WhatsApp with your details pre-filled. Just hit send!
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Ready to start learning?</h2>
+      <p>Get a free demo class with our expert teachers. Online or offline — your choice. No commitment, no pressure.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="#admission" class="btn btn-accent btn-large"><i class="fas fa-video"></i> Book Free Demo</a>
+        <a href="https://wa.me/919876543210" target="_blank" class="btn btn-outline btn-large" style="border-color: white; color: white;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section id="faq" class="block">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Quick answers to the questions parents ask us most.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">Do you offer both online and offline classes? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer"><p>Yes! We offer both online (via Zoom/Google Meet) and offline classes at our center in Sector 15, New Delhi. You can choose whichever mode suits your family's schedule, or even switch between them.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What is the batch size? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer"><p>We keep our batches intentionally small — a maximum of 8 students per batch. This ensures every child gets personal attention and can ask questions freely without hesitation.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Is there a free demo class? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer"><p>Absolutely. We offer one free demo class so you and your child can experience our teaching style before enrolling. No payment or commitment is required for the demo.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Which classes and subjects do you cover? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer"><p>We cover Class 1 to Class 12, with a strong focus on foundation building. Subjects include Mathematics, Science, English, and Social Studies. We also offer Olympiad and NTSE foundation classes for interested students.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">How do you track student progress? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer"><p>We conduct regular chapter tests and monthly assessments. Detailed progress reports are shared with parents every month, and we're always available for a quick call if you have concerns.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What are your fees? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer"><p>Fees vary by class and subject combination. We keep our pricing transparent and affordable, with flexible monthly plans and sibling discounts. Please contact us on WhatsApp or call us for a detailed fee structure.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Can I change my batch timing later? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer"><p>Yes, subject to availability. We understand that schedules change, so we try our best to accommodate timing changes. Just let us know in advance and we'll find a slot that works for you.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Action Strip -->
+  <div class="container" id="contact">
+    <div class="action-strip">
+      <p><i class="fas fa-headset"></i> Have questions? We're here to help.</p>
+      <div class="action-buttons">
+        <a href="tel:+919876543210" class="btn btn-primary"><i class="fas fa-phone-alt"></i> Call Now</a>
+        <a href="https://wa.me/919876543210" target="_blank" class="btn btn-accent"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="mailto:hello@foundationpro.com" class="btn btn-outline"><i class="fas fa-envelope"></i> Email</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3><i class="fas fa-graduation-cap"></i> FoundationPro</h3>
+          <p>Quality coaching for Class 1–12. Offline & online. Building strong foundations since 2012 with personal attention and genuine care.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#teachers">Our Teachers</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#admission">Admission Form</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Get in Touch</h4>
+          <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+          <p><i class="fas fa-envelope"></i> hello@foundationpro.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> Sector 15, New Delhi (Offline)</p>
+          <p><i class="fas fa-clock"></i> Mon–Sat, 7 AM – 8 PM</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 FoundationPro Coaching. All rights reserved. | Designed for excellence.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/919876543210" class="float-contact" target="_blank" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    (function() {
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === "#" || href === "") return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // ===== FAQ Accordion =====
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+          const item = q.parentElement;
+          const isOpen = item.classList.contains('open');
+          // Close all
+          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+          // Toggle current
+          if (!isOpen) item.classList.add('open');
+        });
+      });
+
+      // Open first FAQ by default
+      const firstFaq = document.querySelector('.faq-item');
+      if (firstFaq) firstFaq.classList.add('open');
+
+      // ===== ADMISSION FORM → WHATSAPP =====
+      const form = document.getElementById('admissionForm');
+      const WHATSAPP_NUMBER = '919876543210'; // <-- CHANGE THIS to your WhatsApp number (country code, no + or spaces)
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const studentName = document.getElementById('studentName').value.trim();
+        const parentName  = document.getElementById('parentName').value.trim();
+        const phone       = document.getElementById('phone').value.trim();
+        const email       = document.getElementById('email').value.trim();
+        const classSelect = document.getElementById('classSelect').value;
+        const subject     = document.getElementById('subject').value;
+        const mode        = document.querySelector('input[name="mode"]:checked')?.value || 'Not specified';
+        const timing      = document.getElementById('timing').value;
+        const message     = document.getElementById('message').value.trim();
+
+        // Validation
+        if (!studentName || !parentName || !phone || !classSelect) {
+          alert('Please fill in all required fields (marked with *).');
+          return;
+        }
+        if (!/^[0-9]{10}$/.test(phone)) {
+          alert('Please enter a valid 10-digit phone number.');
+          return;
+        }
+
+        // Build WhatsApp message
+        const whatsappMessage =
+          `*📋 ADMISSION ENQUIRY — FoundationPro*%0A` +
+          `----------------------------------%0A` +
+          `*👨‍🎓 Student:* ${encodeURIComponent(studentName)}%0A` +
+          `*👪 Parent:* ${encodeURIComponent(parentName)}%0A` +
+          `*📞 Phone:* ${encodeURIComponent(phone)}%0A` +
+          `*📧 Email:* ${email ? encodeURIComponent(email) : 'Not provided'}%0A` +
+          `*📚 Class:* ${encodeURIComponent(classSelect)}%0A` +
+          `*📖 Subject:* ${encodeURIComponent(subject)}%0A` +
+          `*💻 Mode:* ${encodeURIComponent(mode)}%0A` +
+          `*⏰ Preferred Timing:* ${encodeURIComponent(timing)}%0A` +
+          `*📝 Message:* ${message ? encodeURIComponent(message) : 'None'}%0A` +
+          `----------------------------------%0A` +
+          `Sent from FoundationPro website`;
+
+        const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
+        window.open(whatsappURL, '_blank');
+      });
+    })();
+  </script>
+</body>
+</html>
